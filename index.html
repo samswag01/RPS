@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Rock-Paper-Scissors</title>
+        <script src="script.js" defer></script>
+        <script>
+            let playerName = 'Samson' || prompt("Enter your name");
+        </script>
+		<style>
+			.score__container {
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+			button {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="score__container">
+				<span class="player">
+                    <script>document.write(playerName.toUpperCase());</script>
+                    <span class="score">0</span></span
+				>:
+				<span class="ai">AI <span class="ai">0</span></span>
+			</div>
+			<div class="play">
+				<button class="rock" data-name="rock">Rock</button>
+				<button class="paper" data-name="paper">Paper</button>
+				<button class="scissors" data-name="scissors">Scissors</button>
+			</div>
+		</div>
+	</body>
+</html>
