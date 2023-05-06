@@ -6,6 +6,7 @@ let buttons = document.querySelectorAll('.play button'),
     scissors = document.querySelector('.scissors'),
     aiScoreBoard = document.querySelector('.ai span'),
     playerScoreBoard = document.querySelector('.player span'),
+    resultArea = document.querySelector('.result'),
     aiScore = 0,
     playerScore = 0,
     aiName = 'AI',
@@ -14,6 +15,10 @@ let buttons = document.querySelectorAll('.play button'),
 
 const random = (arr) => {
     return arr[Math.floor(Math.random() * 3)];
+}
+
+const alertor = (content) => {
+    resultArea.textContent = content;
 }
 
 const playMove = (player, ai) => {
@@ -43,7 +48,7 @@ const updateScoreline = (winner) => {
 }
 
 const gameOver = () => {
-    alert('GAME OVER!');
+    alertor('GAME OVER!');
     aiScore = 0;
     playerScore = 0;
     gameCount = 0;
@@ -57,7 +62,7 @@ const getPlayerMove = (event) => {
     let winner = playMove({ name: playerName, move: playerMove }, { name: aiName, move: aiMove });
     updateScoreline(winner);
     winner = (winner === 'AI' || winner === playerName) ? `${winner} WINS!!` : `${winner}!!`;
-    alert(`${winner} => ${playerMove} vs ${aiMove}`);
+    alertor(`${winner} => ${playerMove} vs ${aiMove}`);
 
     // end game after noIter game has been played
     gameCount++;
