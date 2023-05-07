@@ -42,6 +42,13 @@ body {
     border: 1px solid var(--btn-color);
     border-radius: 3px;
     padding: 10px;
+    width: 100px;
+    text-align: center;
+}
+.score__container .score {
+    color: var(--btn-color);
+    font-weight: bold;
+    font-size: large;
 }
 .play {
     display: grid;
@@ -57,6 +64,13 @@ body {
     font-size: large;
     outline: none;
     border: none;
+    border-radius: 5px;
+}
+/* When the game is over .play for specificity */
+.play .game-over {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 .result {
     display: grid;

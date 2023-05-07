@@ -7,10 +7,12 @@ let buttons = document.querySelectorAll('.play button'),
     aiScoreBoard = document.querySelector('.ai span'),
     playerScoreBoard = document.querySelector('.player span'),
     resultArea = document.querySelector('.result'),
+    againBtn = document.querySelector('.play-again'),
     aiScore = 0,
     playerScore = 0,
     aiName = 'AI',
     gameCount = 0,
+    gameOn = true,
     noIter = 5;
 
 const random = (arr) => {
@@ -22,7 +24,6 @@ const alertor = (content) => {
 }
 
 const playMove = (player, ai) => {
-    // const format = (winner) => `${winner} WINS!!`
     if (player.move === ai.move) {
         return 'TIE'
     }
@@ -47,13 +48,29 @@ const updateScoreline = (winner) => {
     }
 }
 
+const toggleFade = () => {
+    buttons.forEach((btn) => {
+        btn.classList.toggle('game-over');
+    });
+}
+
 const gameOver = () => {
-    alertor('GAME OVER!');
+    let msg = playerScore === aiScore ? "TIE!" : playerScore > aiScore ? `${playerName} WON!` : `${aiName} WON!`
+    alertor(`GAME OVER! => ${msg}`);
+    againBtn.style.display = 'block';
+    toggleFade();
+}
+
+const restartGame = () => {
+    gameOn = !gameOn;
     aiScore = 0;
     playerScore = 0;
     gameCount = 0;
     aiScoreBoard.textContent = 0;
     playerScoreBoard.textContent = 0;
+    toggleFade();
+    againBtn.style.display = "none";
+    document.querySelector('.result').textContent = "Choose a Weapon...";
 }
 
 const getPlayerMove = (event) => {
@@ -66,13 +83,21 @@ const getPlayerMove = (event) => {
 
     // end game after noIter game has been played
     gameCount++;
-    if (gameCount === noIter ) {
-        // a little delay before game actually ends.
-        setTimeout(gameOver, 1000);
+    if (gameCount === noIter) {
+        gameOver();
+        gameOn = !gameOn;
     }
 }
 
+// EVENT LISTENERS
 buttons.forEach((button, _) => {
     button.addEventListener('click', getPlayerMove);
 });
 
+againBtn.addEventListener('click', restartGame);
+
+window.addEventListener('keyup', (event)=> {
+    if (event.key == "r" && !gameOn) {
+        restartGame();
+    }
+});
