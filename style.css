@@ -67,7 +67,8 @@ body {
     border: none;
     border-radius: 5px;
 }
-.play button i {
+.play button i,
+i {
     font-size: 30px;
 }
 /* When the game is over .play for specificity */

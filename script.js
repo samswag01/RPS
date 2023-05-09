@@ -13,6 +13,11 @@ let buttons = document.querySelectorAll('.play button'),
     aiName = 'AI',
     gameCount = 0,
     gameOn = true,
+    moveIcon = {
+        rock: '<i class="fas fa-hand-rock">',
+        paper: '<i class="fas fa-hand-paper">',
+        scissors: '<i class="fas fa-hand-scissors">'
+    },
     noIter = 5;
 
 const random = (arr) => {
@@ -20,7 +25,7 @@ const random = (arr) => {
 }
 
 const alertor = (content) => {
-    resultArea.textContent = content;
+    resultArea.innerHTML = content;
 }
 
 const playMove = (player, ai) => {
@@ -74,12 +79,12 @@ const restartGame = () => {
 }
 
 const getPlayerMove = (event) => {
-    let playerMove = event.target.dataset.name;
+    let playerMove = event.currentTarget.dataset.name;
     let aiMove = random(['rock', 'paper', 'scissors']);
     let winner = playMove({ name: playerName, move: playerMove }, { name: aiName, move: aiMove });
     updateScoreline(winner);
     winner = (winner === 'AI' || winner === playerName) ? `${winner} WINS!!` : `${winner}!!`;
-    alertor(`${winner} => ${playerMove} vs ${aiMove}`);
+    alertor(`${winner} => ${moveIcon[playerMove]} vs ${moveIcon[aiMove]}`);
 
     // end game after noIter game has been played
     gameCount++;
@@ -96,7 +101,7 @@ buttons.forEach((button, _) => {
 
 againBtn.addEventListener('click', restartGame);
 
-window.addEventListener('keyup', (event)=> {
+window.addEventListener('keyup', (event) => {
     if (event.key == "r" && !gameOn) {
         restartGame();
     }
