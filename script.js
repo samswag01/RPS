@@ -16,7 +16,7 @@ let buttons = document.querySelectorAll('.play button'),
     moveIcon = {
         rock: '<i class="fas fa-hand-rock">',
         paper: '<i class="fas fa-hand-paper">',
-        scissors: '<i class="fas fa-hand-scissors">'
+        scissors: '<i class="fas fa-hand-peace">'
     },
     noIter = 5;
 
